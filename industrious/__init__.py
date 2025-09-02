@@ -1,4 +1,4 @@
-import json, time, logging, sys, asyncio
+import json as _json, time, logging, sys, asyncio
 
 from typing import Dict, Any, Optional
 
@@ -143,7 +143,7 @@ class AttrDict(Dict):
     def from_json_file(file_path: str):
         try:
             with open(file_path, "r") as f:
-                return AttrDict(json.load(f))
+                return AttrDict(_json.load(f))
         except Exception as e:
             raise e
 
