@@ -1,12 +1,40 @@
-import json
+import json, time, logging, sys, asyncio
 
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 __version__ = "0.0.2"
 __author__ = 'Hell of the Devil'
 __credits__ = 'Myself :)'
 
 # __all__ = []
+
+def time_duration(epoch_seconds: int, now: Optional[int] = None) -> str:
+    if not now:
+        now = int(time.time())
+    diff = epoch_seconds - now
+    
+    if diff == 0:
+        return "now"
+
+    periods = (
+        ("year", 31536000), ## 60 * 60 * 24 * 365
+        ("month", 2592000), ## 60 * 60 * 24 * 30
+        ("day", 86400),     ## 60 * 60 * 24
+        ("hour", 3600),     ## 60 * 60
+        ("minute", 60),
+        ("second", 1),
+    )
+
+    is_future = diff > 0
+    diff = abs(diff)
+
+    for period_name, period_seconds in periods:
+        if diff >= period_seconds:
+            value = int(diff / period_seconds)
+            s = "" if value == 1 else "s"
+            return f"{'in' if is_future else ''} {value} {period_name}{s} {'ago' if not is_future else ''}".strip()
+    
+    return "just now"
 
 class AttrDict(Dict):
     """
@@ -112,3 +140,12 @@ class AttrDict(Dict):
                 return AttrDict(json.load(f))
         except Exception as e:
             raise e
+
+def asyncio_windows_monkeypatch(loop_policy: Optional[asyncio.events.BaseDefaultEventLoopPolicy] = None):
+    ## if we define our defaults for loop_policy in the definition arguments, 
+    ## we risk the possibility of poisoning any subsequent calls with a previously modified policy 
+    if not loop_policy:
+        loop_policy = asyncio.WindowsProactorEventLoopPolicy()
+    
+    if sys.version_info[0] == 3 and sys.version_info[1] >= 8 and sys.platform.startswith('win'):
+        asyncio.set_event_loop_policy(loop_policy)

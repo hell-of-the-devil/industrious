@@ -10,11 +10,11 @@ setup(
     license='BSD 2-clause',
     packages=['industrious'],
     install_requires=[
-        
+        "rich"
     ],
 
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 2 - Core functionality implementation',
         'Operating System :: POSIX :: Linux :: Windows',
         'Programming Language :: Python :: 3+',
     ],
