@@ -1,6 +1,6 @@
-from flask import Flask, jsonify
 
 from industrious.json import JSONClassProvider
+from flask import Flask, jsonify
 
 # Create the Flask application instance.
 app = Flask(__name__)

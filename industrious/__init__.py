@@ -2,6 +2,7 @@ import json, time, logging, sys, asyncio
 
 from typing import Dict, Any, Optional
 
+from . import json
 __version__ = "0.0.2"
 __author__ = 'Hell of the Devil'
 __credits__ = 'Myself :)'
@@ -10,6 +11,7 @@ __all__ = [
     "time_duration",
     "AttrDict",
     "asyncio_windows_monkey_patch",
+    "json"
 ]
 
 def time_duration(epoch_seconds: int, now: Optional[int] = None) -> str:

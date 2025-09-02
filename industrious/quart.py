@@ -1,5 +1,4 @@
 import json
-from typing import Optional
 from . import time_duration
 
 __all__ = ["IndustriousQuart"]
