@@ -1,4 +1,4 @@
-import unittest, json
+import unittest
 from industrious import AttrDict
 test_dict = {
     "Hello": "World",
@@ -42,6 +42,13 @@ class TestStringMethods(unittest.TestCase):
 
         with self.assertRaises(AttributeError):
             self.test_data.nothing.like
+
+    def test_d(self):
+        """
+            test if our __bool__ comparator works
+        """
+        self.assertTrue(AttrDict(test="string"))
+        self.assertFalse(AttrDict())
 
 
 

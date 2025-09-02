@@ -1,11 +1,7 @@
 import json as _json, time, sys, asyncio
+from . import __version__
 
 from typing import Dict, Any, Optional
-
-__version__ = "0.0.2"
-__author__ = 'Hell of the Devil'
-__credits__ = 'Myself :)'
-
 __all__ = [
     "time_duration",
     "AttrDict",
@@ -146,6 +142,13 @@ class AttrDict(Dict):
             raise e
 
 def asyncio_windows_monkey_patch(loop_policy: Optional[asyncio.events.BaseDefaultEventLoopPolicy] = None):
+    """
+        A quick windows monkey patch for handling windows asyncio bullshit
+
+        :param loop_policy: asyncio.WindowsProactorEventLoopPolicy() or asyncio.WindowsSelectorEventLoopPolicy()(other policies can be selected)
+        :type loop_policy: asyncio.events.BaseDefaultEventLoopPolicy
+    """
+
     ## if we define our defaults for loop_policy in the definition arguments, 
     ## we risk the possibility of poisoning any subsequent calls with a previously modified policy 
     if not loop_policy:

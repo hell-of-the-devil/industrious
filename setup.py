@@ -1,8 +1,9 @@
 from setuptools import setup
+from industrious import __version__
 
 setup(
-    name='industrious',
-    version='0.0.2',
+    name="Industrious",
+    version=__version__.__version__,
     description='A random assortment of utilities based around my personal stack workflow',
     url='https://github.com/hell-of-the-devil/industrious',
     author='Hell of the Devil',

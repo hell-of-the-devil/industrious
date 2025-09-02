@@ -1,8 +1,8 @@
-import logging, asyncio
-from industrious import asyncio_windows_monkeypatch
+import asyncio
+from industrious import asyncio_windows_monkey_patch
 from industrious.console_service import ConsoleService
 
-asyncio_windows_monkeypatch()
+asyncio_windows_monkey_patch()
 
 if __name__ == '__main__':
     cs = ConsoleService()
