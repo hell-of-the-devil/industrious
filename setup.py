@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='industrious',
-    version='0.0.1',
+    version='0.0.2',
     description='A random assortment of utilities based around my personal stack workflow',
     url='https://github.com/hell-of-the-devil/industrious',
     author='Hell of the Devil',
@@ -10,7 +10,7 @@ setup(
     license='BSD 2-clause',
     packages=['industrious'],
     install_requires=[
-
+        
     ],
 
     classifiers=[
