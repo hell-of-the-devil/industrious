@@ -1,6 +1,9 @@
 from importlib.util import find_spec
 from json import JSONEncoder
 
+
+
+
 class JSONClassEncoder(JSONEncoder):
     def default(self, o):
         if hasattr(o, '__json__'):

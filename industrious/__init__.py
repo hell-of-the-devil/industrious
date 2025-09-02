@@ -6,7 +6,11 @@ __version__ = "0.0.2"
 __author__ = 'Hell of the Devil'
 __credits__ = 'Myself :)'
 
-# __all__ = []
+__all__ = [
+    "time_duration",
+    "AttrDict",
+    "asyncio_windows_monkey_patch",
+]
 
 def time_duration(epoch_seconds: int, now: Optional[int] = None) -> str:
     if not now:
@@ -141,7 +145,7 @@ class AttrDict(Dict):
         except Exception as e:
             raise e
 
-def asyncio_windows_monkeypatch(loop_policy: Optional[asyncio.events.BaseDefaultEventLoopPolicy] = None):
+def asyncio_windows_monkey_patch(loop_policy: Optional[asyncio.events.BaseDefaultEventLoopPolicy] = None):
     ## if we define our defaults for loop_policy in the definition arguments, 
     ## we risk the possibility of poisoning any subsequent calls with a previously modified policy 
     if not loop_policy:
