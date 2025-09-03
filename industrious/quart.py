@@ -10,7 +10,7 @@ class IndustriousQuart:
 
     def init_app(self, app):
         app.industrious = self
-
+        
         app.jinja_env.filters["to_json"] = self.to_pretty_json
         app.jinja_env.filters["time_duration"] = time_duration
     
