@@ -39,6 +39,9 @@ def time_duration(epoch_seconds: int, now: Optional[int] = None) -> str:
     
     return "just now"
 
+
+## TODO: perhaps inherit a namedtuple
+# from typing import NamedTuple
 class AttrDict(Dict):
     """
         Attributed Dictionaries
@@ -153,7 +156,7 @@ def asyncio_windows_monkey_patch(loop_policy: Optional[asyncio.events.BaseDefaul
     """
 
     ## if we define our defaults for loop_policy in the definition arguments, 
-    ## we risk the possibility of poisoning any subsequent calls with a previously modified policy 
+    ## we risk the possibility of poisoning any subsequent calls with a previously modified policy
     if not loop_policy:
         loop_policy = asyncio.WindowsProactorEventLoopPolicy()
     

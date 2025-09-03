@@ -16,7 +16,7 @@ class IndustriousQuart:
             self.init_app(app)
 
     def init_app(self, app: Quart):
-        app.industrious = self
+        app.industrious = self ## type: ignore
         
         app.json = JSONClassProvider(app)
 
