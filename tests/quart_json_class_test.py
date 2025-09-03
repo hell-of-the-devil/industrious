@@ -1,9 +1,10 @@
 import asyncio
-from industrious.json import JSONClassProvider
 from quart import Quart, jsonify
+from industrious.quart import IndustriousQuart
 
 app = Quart(__name__)
-app.json = JSONClassProvider(app)
+
+IndustriousQuart(app)
 
 @app.route('/')
 def index():

@@ -1,16 +1,25 @@
 import json
-from . import time_duration
+from quart import Quart
+from quart.json.provider import DefaultJSONProvider
 
-__all__ = ["IndustriousQuart"]
+from . import time_duration
+from .json import default_json_encoder
+
+__all__ = ["IndustriousQuart", "JSONClassProvider"]
+
+class JSONClassProvider(DefaultJSONProvider):
+        default = default_json_encoder ## type: ignore
 
 class IndustriousQuart:
     def __init__(self, app=None):
         if app is not None:
             self.init_app(app)
 
-    def init_app(self, app):
+    def init_app(self, app: Quart):
         app.industrious = self
         
+        app.json = JSONClassProvider(app)
+
         app.jinja_env.filters["to_json"] = self.to_pretty_json
         app.jinja_env.filters["time_duration"] = time_duration
     

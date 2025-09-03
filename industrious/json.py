@@ -43,14 +43,3 @@ def json_monkey_patch():
         ```
     """
     JSONEncoder.default = default_json_encoder
-
-## TODO: find a better way to optionally implement flask/quart stuff
-try:
-    from quart.json.provider import DefaultJSONProvider
-    class JSONClassProvider(DefaultJSONProvider): # type: ignore
-            default = default_json_encoder
-        
-except ImportError as e:
-    class JSONClassProvider:
-        def __init__(self, *args, **kwargs):
-            raise NotImplementedError(f"Usage of {__class__.__name__} requires quart to be installed")
