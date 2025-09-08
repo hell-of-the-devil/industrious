@@ -1,5 +1,5 @@
 import unittest, json
-from industrious.json import json_class_monkey_patch
+from industrious.json import default_json_encoder
 
 class TestExample:
     def __json__(self):
@@ -24,8 +24,7 @@ class TestStringMethods(unittest.TestCase):
             json.dumps(self.test_data)
 
     def test_b_after_patch(self):
-        json_class_monkey_patch()
-        self.assertIsInstance(json.dumps(self.test_data), str)
+        self.assertIsInstance(json.dumps(self.test_data, default=default_json_encoder), str)
 
 if __name__ == '__main__':
     unittest.main()

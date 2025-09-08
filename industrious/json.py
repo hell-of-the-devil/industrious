@@ -6,7 +6,7 @@ __all__=[
     "json_monkey_patch"
 ]
 
-def default_json_encoder(self, o: Any):
+def default_json_encoder(o: Any):
     if hasattr(o, "__json__"):
         return o.__json__()
     
@@ -14,7 +14,8 @@ def default_json_encoder(self, o: Any):
     if o.__class__.__name__ == "ObjectId": 
         return o.__repr__()
     
-    return self.super().default(o)
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
 
 
 # class JSONClassEncoder(JSONEncoder):
