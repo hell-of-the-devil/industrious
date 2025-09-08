@@ -136,7 +136,7 @@ class ConsoleService:
     async def exit_command(self, command):
         self.running = False
         self.console.log(f"Stopping {__name__}, requested by user")
-
+        raise asyncio.CancelledError("Requested by user")
 
     async def help_command(self, command):
         _help_table = Table(title="Command Help")
@@ -242,5 +242,7 @@ class ConsoleService:
             except asyncio.CancelledError:
                 self.console.log("user exited.")
                 break
+            except EOFError as e:
+                raise e
             except Exception as e:
                 self.console.print_exception()

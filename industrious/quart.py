@@ -2,13 +2,21 @@ import json
 from quart import Quart
 from quart.json.provider import DefaultJSONProvider
 
+from typing import Any
 from . import time_duration
-from .json import default_json_encoder
 
 __all__ = ["IndustriousQuart", "JSONClassProvider"]
 
 class JSONClassProvider(DefaultJSONProvider):
-        default = default_json_encoder ## type: ignore
+    def default_json_encoder(self, o: Any):
+        if hasattr(o, "__json__"):
+            return o.__json__()
+        
+        ## TODO: fix this, i don't really want to import bson if i don't have too
+        if o.__class__.__name__ == "ObjectId": 
+            return o.__repr__()
+
+    default = default_json_encoder ## type: ignore
 
 class IndustriousQuart:
     def __init__(self, app=None):
