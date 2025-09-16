@@ -12,7 +12,7 @@ def default_json_encoder(o: Any):
     
     ## TODO: fix this, i don't really want to import bson if i don't have too
     if o.__class__.__name__ == "ObjectId": 
-        return o.__repr__()
+        return o.__str__()
     
     raise TypeError(f'Object of type {o.__class__.__name__} '
                         f'is not JSON serializable')
